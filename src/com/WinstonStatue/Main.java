@@ -28,7 +28,7 @@ public class Main {
             turnLoop: while (true) {
                 System.out.print("Player " + turn + ", Which column would you like to drop a chip in a(0,1,2,3,4,5,6): ");
                 target = sc.nextInt();
-                if(0 > target || 7 < target){
+                if(0 > target || gameBoard[0].length < target){
                     System.out.println("Invalid Index");
                 }
                 for(int i = gameBoard.length - 1; i >=0;i--){
