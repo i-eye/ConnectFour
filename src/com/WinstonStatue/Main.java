@@ -48,7 +48,7 @@ public class Main {
                 break;
             }
             // checks to see if the board is full: if it is and the win check doesn't come back true, it ends the game with a tie.
-            if(turnNumber>=42){
+            if(turnNumber>=(gameBoard.length*gameBoard[0].length)){
                 printArray(gameBoard);
                 System.out.println("It is a tie............how rare");
                 break;
