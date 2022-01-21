@@ -1,8 +1,3 @@
-/*
-Ivan Freeman
-January 19, 2022,
-The purpose of this program is to be able to successfully run a game of Tic-Tac-Toe with two players, and automatically conclude who wins
- */
 package com.WinstonStatue;
 import java.util.Arrays;
 import java.util.Scanner;
