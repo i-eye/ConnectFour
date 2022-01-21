@@ -2,9 +2,14 @@ package com.WinstonStatue;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import WinstonStatue.company.Nathan;
+
 public class Main {
     public static void main(String[] args) {
         // initialization variables
+        Nathan nathan = new Nathan();
+        //nathan.digitSum(2);
+
         Scanner sc = new Scanner(System.in);
         char turn = 'X';
         char[][] gameBoard = new char[6][7];
