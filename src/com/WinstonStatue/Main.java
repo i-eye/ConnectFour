@@ -2,17 +2,19 @@ package com.WinstonStatue;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import WinstonStatue.company.Nathan;
 
 public class Main {
     public static void main(String[] args) {
         // initialization variables
-        Nathan nathan = new Nathan();
-        //nathan.digitSum(2);
+        Nathan.digitSum(2);
 
         Scanner sc = new Scanner(System.in);
+        System.out.print("Number of Rows: ");
+        int rows = sc.nextInt();
+        System.out.print("Number of Columns: ");
+        int columns = sc.nextInt();
         char turn = 'X';
-        char[][] gameBoard = new char[6][7];
+        char[][] gameBoard = new char[rows][columns];
         int target;
         int turnNumber=1;
 
@@ -26,18 +28,19 @@ public class Main {
         while(true) {
             printArray(gameBoard);
             turnLoop: while (true) {
-                System.out.print("Player " + turn + ", Which column would you like to drop a chip in a(0,1,2,3,4,5,6): ");
-                target = sc.nextInt();
-                if(0 > target || gameBoard[0].length < target){
+                System.out.print("Player " + turn + ", Which column would you like to drop a chip in a: ");
+                target = sc.nextInt() - 1;
+                if(0 > target || gameBoard[0].length - 1 < target){
                     System.out.println("Invalid Index");
-                }
-                for(int i = gameBoard.length - 1; i >=0;i--){
-                    if(gameBoard[i][target] == '\u0020'){
-                        gameBoard[i][target] = turn;
-                        break turnLoop;
+                } else {
+                    for (int i = gameBoard.length - 1; i >= 0; i--) {
+                        if (gameBoard[i][target] == '\u0020') {
+                            gameBoard[i][target] = turn;
+                            break turnLoop;
+                        }
                     }
+                    System.out.println("Please repeat, that row is full");
                 }
-                System.out.println("Please repeat, that row is full");
 
             }
 
@@ -65,29 +68,48 @@ public class Main {
     // A method that prints the board of the game
     public static void printArray(char[][] gameBoard){
         for (char[] chars : gameBoard) {
-            System.out.print("-----------------------------\n" + "| ");
+            for(char ignored : chars){
+                System.out.print("----");
+            }
+            System.out.print("-\n" + "| ");
             for(char character : chars){
                 System.out.print(character+" | ");
             }
             System.out.println();
         }
-        System.out.println("-----------------------------");
+        for(char[] chars : gameBoard){
+            for(char ignored : chars){
+                System.out.print("----");
+            }
+            System.out.println("-\n");
+            break;
+        }
+
+        System.out.print("| ");
+        for(int i = 0;i<gameBoard.length;i++){
+            System.out.print((i+1) + " | ");
+        }
+        System.out.println();
+
     }
     // checks to see if there is a win in all four directions -- vertically, horizontally, and the two diagonals
 
     public static boolean checkForWin(char[][] values){
+        for(int i = 0; i<20;i++){
+            System.out.println();
+        }
         // checks horizontally
-        for (int row = 0; row<values.length; row++) {
-            for (int column = 0; column < values[row].length; column++) {
+        for (char[] value : values) {
+            for (int column = 0; column < value.length; column++) {
                 /* debugging
                 System.out.println(row+ " "+column);
                 System.out.println(column + 3);
                 System.out.println(values[row].length);
 
                  */
-                if ((column + 3) >= values[row].length) {
+                if ((column + 3) >= value.length) {
 
-                } else if (values[row][column] == values[row][column + 1] && values[row][column + 1] == values[row][column + 2] && values[row][column + 2] == values[row][column + 3] && values[row][column] != '\u0020') {
+                } else if (value[column] == value[column + 1] && value[column + 1] == value[column + 2] && value[column + 2] == value[column + 3] && value[column] != '\u0020') {
                     return true;
                 }
             }
