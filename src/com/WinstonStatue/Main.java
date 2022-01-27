@@ -86,7 +86,7 @@ public class Main {
         }
 
         System.out.print("| ");
-        for(int i = 0;i<gameBoard.length;i++){
+        for(int i = 0;i<gameBoard[0].length;i++){
             System.out.print((i+1) + " | ");
         }
         System.out.println();
